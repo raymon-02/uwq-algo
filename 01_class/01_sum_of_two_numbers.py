@@ -14,10 +14,7 @@ from collections import defaultdict
 def two_num_sum(arr, target_sum):
     cache = defaultdict(int)
     for el in arr:
-        if el in cache:
-            cache[el] += 1
-        else:
-            cache[el] = 1
+        cache[el] += 1
     for el in arr:
         cache[el] -= 1
         if cache.get(target_sum - el, 0) > 0:
