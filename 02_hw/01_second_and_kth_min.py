@@ -33,14 +33,15 @@ def second_min(arr):
 # The first minimum is -9, the second minimum is 2, the third minimum is 4, the fourth minimum is 10
 #
 # Example
-# Input: [10, 4, 2, -9, 15, -9, 2, 2, -9]
-# Output: 2
+# Input: [10, 4, 2, -9, 15, -9, 2, 2, -9], 4
+# Output: 10
 # k equals to 4, then function should return the forth minimum
 # The first minimum is -9, the second minimum is 2, the third minimum is 4, the fourth minimum is 10
 #
 # Example
-# Input: [1, 1, 2, 3, 1]
+# Input: [1, 1, 2, 3, 1], 4
 # Output: None
+# k equals to 4, then function should return the forth minimum
 # The first minimum is 1, the second minimum is 2, the third minimum is 3 and there are no more other numbers.
 
 
