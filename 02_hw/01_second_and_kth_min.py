@@ -20,7 +20,21 @@
 
 
 def second_min(arr):
-    pass
+    if not arr:
+        return None
+    fm = arr[0]
+    sm = None
+    for el in arr[1:]:
+        if el < fm:
+            fm, sm = el, fm
+        elif el != fm and (sm is None or el < sm):
+            sm = el
+
+    return sm
+
+
+# O(N) -- time
+# O(1) -- space
 
 
 # The same condition as above but function should return kth minimum.
@@ -46,4 +60,20 @@ def second_min(arr):
 
 
 def kth_min(arr, k):
-    pass
+    if not arr:
+        return None
+    arr = sorted(arr)
+    i = 0
+    for _ in range(k - 1):
+        if i >= len(arr):
+            return None
+        curr = arr[i]
+        while i < len(arr) and arr[i] == curr:
+            i += 1
+    if i >= len(arr):
+        return None
+
+    return arr[i]
+
+# O(NlogN) -- time
+# O(1) -- space

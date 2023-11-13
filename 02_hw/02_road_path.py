@@ -30,4 +30,17 @@
 
 
 def road_path(l1, l2):
-    pass
+    def x_in_str(l):
+        return l.count("X")
+
+    def calc(s1, s2):
+        res = 0
+        for i1 in range(len(s1)):
+            i2 = i1 - 2 + 1 if i1 - 2 >= 0 else 0
+            res = max(res, x_in_str(s1[i1:]) + x_in_str(s2[:i2]))
+        return res
+
+    return max(calc(l1, l2), calc(l2, l1))
+
+# O(N) -- time
+# O(1) -- space
