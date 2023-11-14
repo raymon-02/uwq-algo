@@ -27,6 +27,9 @@ def best_seat(seats):
             if curr == 0:
                 ri = i
             curr += 1
+    if max_r < curr:
+        max_r = curr
+        rr = ri
 
     return rr + math.ceil(max_r / 2) - 1
 
