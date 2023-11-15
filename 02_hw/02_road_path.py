@@ -35,9 +35,15 @@ def road_path(l1, l2):
 
     def calc(s1, s2):
         res = 0
-        for i1 in range(len(s1)):
-            i2 = i1 - 2 + 1 if i1 - 2 >= 0 else 0
-            res = max(res, x_in_str(s1[i1:]) + x_in_str(s2[:i2]))
+        x1 = x_in_str(s1)
+        x2 = 0
+        for i in range(-1, len(s1)):
+            i2 = i - 1
+            if i2 >= 0 and s2[i2] == "X":
+                x2 += 1
+            if i >= 0 and s1[i] == "X":
+                x1 -= 1
+            res = max(res, x1 + x2)
         return res
 
     return max(calc(l1, l2), calc(l2, l1))
