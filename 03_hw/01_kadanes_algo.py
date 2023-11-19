@@ -9,4 +9,12 @@
 # Subarray will be [1, 4]
 
 def kadanes_algo(arr):
-    pass
+    result = float("-inf")
+    current = float("-inf")
+    for el in arr:
+        current = max(current + el, el)
+        result = max(result, current)
+    return result
+
+# O(N) -- time
+# O(1) -- space
