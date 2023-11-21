@@ -17,6 +17,7 @@
 #
 # Output: 7
 
+
 class Node:
     def __init__(self, val, left, right):
         self.val = val

@@ -19,6 +19,7 @@
 # Output: 7
 # The longest path is 6-2-4-3-7-1-8
 
+
 class Node:
     def __init__(self, val, left, right):
         self.val = val
