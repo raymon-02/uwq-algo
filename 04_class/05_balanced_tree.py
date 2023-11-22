@@ -38,4 +38,15 @@ class Node:
 
 
 def is_balanced(tree):
-    pass
+    def rec(node):
+        if not node:
+            return 0, True
+        lh, lr = rec(node.left)
+        rh, rr = rec(node.right)
+        result = lr and rr and abs(lh - rh) <= 1
+        return max(lh, rh) + 1, result
+
+    return rec(tree)[1]
+
+# O(N) -- time
+# O(logN) -- space

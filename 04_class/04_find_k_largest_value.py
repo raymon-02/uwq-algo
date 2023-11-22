@@ -32,7 +32,7 @@ def k_largest_value(tree, k):
     def rec(node):
         nonlocal result
         nonlocal i
-        if not node:
+        if result or not node:
             return
         rec(node.right)
         i += 1
@@ -44,5 +44,5 @@ def k_largest_value(tree, k):
 
     return result
 
-# O(N) -- time
+# O(k) -- time
 # O(logN) -- space
