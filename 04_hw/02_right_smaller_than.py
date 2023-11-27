@@ -17,5 +17,40 @@
 #
 # Hint: binary search tree
 
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
 def right_smaller_than(arr):
-    pass
+    if not arr:
+        return []
+
+    def add(node, val, r):
+        if val <= node.val:
+            node.count += 1
+            if node.left:
+                return add(node.left, val, r)
+            else:
+                node.left = Node(val)
+                return r
+        else:
+            if node.right:
+                return add(node.right, val, r + node.count + 1)
+            else:
+                node.right = Node(val)
+                return r + node.count + 1
+
+    result = [0]
+    root = Node(arr[-1])
+    for el in reversed(arr[:-1]):
+        c = add(root, el, 0)
+        result.append(c)
+
+    return list(reversed(result))
+
+# O(NlogN) -- time
+# O(N) -- space

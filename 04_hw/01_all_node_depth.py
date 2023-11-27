@@ -28,4 +28,15 @@ class Node:
 
 
 def all_node_depth(tree):
-    pass
+    def rec(node, d):
+        if not node:
+            return 0
+        res = d * (d + 1) // 2
+        rl = rec(node.left, d + 1)
+        rr = rec(node.right, d + 1)
+        return res + rl + rr
+
+    return rec(tree, 0)
+
+# O(N) -- time
+# O(logN) -- space
