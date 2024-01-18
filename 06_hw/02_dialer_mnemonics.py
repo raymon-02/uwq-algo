@@ -25,4 +25,32 @@
 
 
 def dialer_mnemonics(s):
-    pass
+    keys = {
+        "0": "0",
+        "1": "1",
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz",
+    }
+    result = []
+
+    def rec(i, path):
+        if i == len(s):
+            result.append("".join(path))
+            return
+        for l in keys[s[i]]:
+            path.append(l)
+            rec(i + 1, path)
+            path.pop()
+
+    rec(0, [])
+
+    return result
+
+# O(N * 4^N) -- time
+# O(N * 4^N) -- space

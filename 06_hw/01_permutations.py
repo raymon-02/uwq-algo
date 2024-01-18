@@ -7,4 +7,25 @@
 
 
 def permutations(arr):
-    pass
+    result = []
+    n = len(arr)
+    if not n:
+        return result
+
+    def rec(curr, path):
+        if len(path) == n:
+            result.append(path)
+            return
+        for el in [*curr]:
+            curr.remove(el)
+            p = [e for e in path]
+            p.append(el)
+            rec(curr, p)
+            curr.add(el)
+
+    rec(set(arr), [])
+
+    return result
+
+# O(N^2 * N!) -- time
+# O(N * N!) -- space
