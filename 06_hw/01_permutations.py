@@ -8,19 +8,18 @@
 
 def permutations(arr):
     result = []
-    n = len(arr)
-    if not n:
+    if not arr:
         return result
 
     def rec(curr, path):
-        if len(path) == n:
-            result.append(path)
+        if not curr:
+            result.append(path.copy())
             return
         for el in [*curr]:
             curr.remove(el)
-            p = [e for e in path]
-            p.append(el)
-            rec(curr, p)
+            path.append(el)
+            rec(curr, path)
+            path.pop()
             curr.add(el)
 
     rec(set(arr), [])
