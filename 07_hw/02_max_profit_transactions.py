@@ -14,5 +14,43 @@
 # Total profit is 6 + 87 = 93
 
 
+def max_profit_grid(prices, k):
+    if not prices:
+        return 0
+
+    grid = [[0] * len(prices) for _ in range(k + 1)]
+
+    for i in range(1, k + 1):
+        m = float("-inf")
+        for j in range(1, len(prices)):
+            m = max(m, grid[i - 1][j - 1] - prices[j - 1])
+            grid[i][j] = max(grid[i][j - 1], m + prices[j])
+
+    return grid[-1][-1]
+
+
+# O(N * k) -- time
+# O(N * k) -- space
+
+# No need to have full grid.
+
+
 def max_profit(prices, k):
-    pass
+    if not prices:
+        return 0
+
+    curr = [0] * len(prices)
+    prev = [0] * len(prices)
+
+    for i in range(1, k + 1):
+        m = float("-inf")
+        curr = [0] * len(prices)
+        for j in range(1, len(prices)):
+            m = max(m, prev[j - 1] - prices[j - 1])
+            curr[j] = max(curr[j - 1], m + prices[j])
+        prev = curr
+
+    return curr[-1]
+
+# O(N * k) -- time
+# O(N) -- space
