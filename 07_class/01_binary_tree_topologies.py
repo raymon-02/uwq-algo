@@ -32,7 +32,7 @@ def binary_tree_topologies_rec(n):
 
 def binary_tree_topologies(n):
     # Catalan number
-    # (2n!) / (n! * (n + 1)!)
+    # (2n)! / (n! * (n + 1)!)
     up = 1
     for i in range(n + 1, 2 * n + 1):
         up *= i
