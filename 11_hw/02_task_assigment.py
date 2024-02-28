@@ -18,4 +18,12 @@
 # Tasks 1 and 3 are assigned on worker 2 and will take 3+3=6.
 
 def task_assignment(k, tasks):
-    pass
+    result = []
+    ts = sorted([(el, i) for i, el in enumerate(tasks)], key=lambda el: el[0])
+    for (t1, i1), (t2, i2) in zip(ts[:k], reversed(ts[k:])):
+        result.append([i1, i2])
+
+    return result
+
+# O(Klog(K)) -- time
+# O(K) -- space

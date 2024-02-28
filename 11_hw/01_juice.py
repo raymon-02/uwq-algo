@@ -31,5 +31,50 @@
 # having 2 amount of juice in total.
 
 
+def juice_grid(prices):
+    n = len(prices)
+    grid = [[0] * n for _ in range(n)]
+    for i in range(1, n):
+        for j in range(1, n):
+            take = grid[i - j][j] + prices[j] if i - j >= 0 else 0
+            leave = grid[i][j - 1]
+            grid[i][j] = max(take, leave)
+
+    result = []
+    i, j = n - 1, n - 1
+    while j > 0 and i > 0:
+        if grid[i][j] == grid[i][j - 1]:
+            j -= 1
+        else:
+            result.append(j)
+            i -= j
+
+    return list(reversed(result))
+
+
+# O(N^2) -- time
+# O(N^2) -- space
+
+# No need to have full grid.
+
+
 def juice(prices):
-    pass
+    n = len(prices)
+    grid = [0] * n
+    path = [0] * n
+    for j in range(1, n):
+        for i in range(j, n):
+            if grid[i - j] + prices[j] > grid[i]:
+                grid[i] = grid[i - j] + prices[j]
+                path[i] = j
+
+    result = []
+    i = n - 1
+    while i > 0:
+        result.append(path[i])
+        i -= path[i]
+
+    return list(reversed(result))
+
+# O(N^2) -- time
+# O(N) -- space
