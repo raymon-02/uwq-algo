@@ -10,4 +10,21 @@
 
 
 def train_platforms(times):
-    pass
+    arr = sorted(map(lambda el: el[0], times))
+    dep = sorted(map(lambda el: el[1], times))
+    i, j = 0, 0
+    result = 0
+    plt_needed = 0
+    while j < len(dep):
+        if arr[i] < dep[j]:
+            plt_needed += 1
+            result = max(result, plt_needed)
+            i += 1
+        else:
+            plt_needed -= 1
+            j += 1
+
+    return result
+
+# O(NlogN) -- time
+# O(N) -- space

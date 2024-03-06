@@ -19,6 +19,22 @@
 # Penalty is:
 # 3 * e^0 + 2 * e^(0 + 1) + 5 * e^(0 + 1 + 4) = 3 + 2e + 5e^5 =~ 750.5
 
+import math
+
 
 def minimum_penalty_time_exp(tasks):
-    pass
+    tasks.sort(key=lambda el: (1 - pow(math.e, el[0])) / el[1], reverse=True)
+    result = 0
+    wait_time = 0
+    for (time, coefficient) in tasks:
+        penalty = coefficient * pow(math.e, wait_time)
+        result += penalty
+        wait_time += time
+
+    return result
+
+# O(NlogN) -- time
+# O(1) -- space
+
+# The same calculation approach as in minimum_penalty_time_lin.
+# In result need to sort by (1 - e^task[0])/task[1] in reversed order.
