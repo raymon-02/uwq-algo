@@ -8,7 +8,7 @@ Functional Requirements:
 
 Non-Functional Requirements:
 
-1. Our service needs to be highly available.
+1. The system needs to be highly available.
 2. Consistency can take a hit (in the interest of availability), if a user doesn’t see a photo
    for a while, it should be fine.
 3. The system should be highly reliable, any uploaded photo or video should never be
