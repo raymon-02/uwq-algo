@@ -1,6 +1,6 @@
 # Write a function that takes text
 # and returns a table with chars
-# decoded by Huffman algorithm.
+# encoded by Huffman algorithm.
 #
 # Example
 # Input: "aaaabbbbcccdddeefg"
