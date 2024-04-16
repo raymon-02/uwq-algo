@@ -6,7 +6,7 @@
 # if two sentences in the query are synonyms.
 #
 # Example
-# Inout:
+# Input:
 #   [("love", "like"), ("cat", "kitten"), ("meat", "chicken")],
 #   [("cat love meat", "cat like chicken"), ("cat hate meat", "kitten love chicken")]
 # Output:
