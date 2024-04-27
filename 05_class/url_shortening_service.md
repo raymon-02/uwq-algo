@@ -1,7 +1,7 @@
 Functional Requirements:
 
-1. Given a URL, our service should generate a shorter and unique alias of it. This is called a short link.
-2. When users access a short link, our service should redirect them to the original link.
+1. Given a URL, service should generate a shorter and unique alias of it. This is called a short link.
+2. When users access a short link, service should redirect them to the original link.
 3. Links will expire after a standard default timespan. Users should also be able to specify
    the expiration time.
 
