@@ -17,4 +17,30 @@
 
 
 def two_edge_connected(graph):
-    pass
+    time_in = [-1] * len(graph)
+
+    def dfs(v, prev, time):
+        time_in[v] = time
+        v_time = time
+
+        for to in graph[v]:
+            if to == prev:
+                continue
+            if time_in[to] != -1:
+                v_time = min(v_time, time_in[to])
+            else:
+                to_time = dfs(to, v, time + 1)
+                v_time = min(v_time, to_time)
+
+        if v_time == time and prev != -1:
+            return -1
+
+        return v_time
+
+    if dfs(0, -1, 0) == -1:
+        return False
+
+    return all(map(lambda el: el >= 0, time_in))
+
+# O(V + E) -- time
+# O(V) -- space
