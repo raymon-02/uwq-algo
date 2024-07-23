@@ -7,7 +7,7 @@
 #
 # The linked list is 1->2->3->4->5->6->7->8->3->4->...goes to cycle.
 #
-# Write a funtion that takes such linked list and returns the first node in a cycle.
+# Write a function that takes such linked list and returns the first node in a cycle.
 # In the example above it would be node 3.
 #
 # Each node in a linked list has type Node containing reference to the next node.
