@@ -62,7 +62,7 @@ def second_min(arr):
 def kth_min(arr, k):
     if not arr:
         return None
-    arr = sorted(arr)
+    arr.sort()
     i = 0
     for _ in range(k - 1):
         if i >= len(arr):
@@ -76,4 +76,4 @@ def kth_min(arr, k):
     return arr[i]
 
 # O(NlogN) -- time
-# O(1) -- space
+# O(logN) -- space
