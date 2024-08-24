@@ -12,4 +12,41 @@
 
 
 def ratio_finder_dsu(rates, start, end):
-    pass
+    dsu = {}
+    conversions = {}
+
+    def create(x):
+        dsu[x] = x
+        conversions[x] = 1.0
+
+    def find(x):
+        if dsu[x] == x:
+            return x
+        root = find(dsu[x])
+        dsu[x] = root
+        conversions[x] *= conversions[root]
+        return root
+
+    def union(x, y, rate):
+        root_x = find(x)
+        root_y = find(y)
+        dsu[root_y] = root_x
+        conversions[root_y] = conversions[x] * rate / conversions[y]
+
+    for orig, dest, rate in rates:
+        if orig not in dsu:
+            create(orig)
+        if dest not in dsu:
+            create(dest)
+        union(orig, dest, rate)
+
+    start_root, start_rate = dsu[start], conversions[start]
+    end_root, end_rate = dsu[end], conversions[end]
+
+    if start_root != end_root:
+        return None
+
+    return end_rate / start_rate
+
+# O(V + E) -- time
+# O(V + E) -- space
