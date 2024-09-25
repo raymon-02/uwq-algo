@@ -13,36 +13,35 @@
 def count_inversions(arr):
     b = [el for el in arr]
 
-    def rec(i, j):
+    def rec(l, r):
         result = 0
 
-        if i + 1 >= j:
+        if l + 1 >= r:
             return result
-        mid = (i + j) // 2
-        result += rec(i, mid)
-        result += rec(mid, j)
-        n, m = i, mid
-        k = i
-        while n < mid and m < j:
-            if b[n] <= b[m]:
-                arr[k] = b[n]
-                n += 1
+        m = (l + r) // 2
+        result += rec(l, m)
+        result += rec(m, r)
+        i, j, k = l, m, l
+        while i < m and j < r:
+            if b[i] <= b[j]:
+                arr[k] = b[i]
+                i += 1
             else:
-                result += mid - n
-                arr[k] = b[m]
-                m += 1
+                result += m - i
+                arr[k] = b[j]
+                j += 1
             k += 1
-        while n < mid:
-            arr[k] = b[n]
-            n += 1
+        while i < m:
+            arr[k] = b[i]
+            i += 1
             k += 1
-        while m < j:
-            arr[k] = b[m]
-            m += 1
+        while j < r:
+            arr[k] = b[j]
+            j += 1
             k += 1
 
-        for z in range(i, j):
-            b[z] = arr[z]
+        for k in range(l, r):
+            b[k] = arr[k]
 
         return result
 
