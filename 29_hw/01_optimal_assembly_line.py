@@ -24,4 +24,44 @@
 
 
 def optimal_assembly_line(durations, stations):
-    pass
+    start = max(durations)
+    end = sum(durations) + 1
+    result = end - 1
+
+    def check(duration):
+        nonlocal stations
+        rest_stations = stations
+        current = 0
+        res = 0
+        for el in durations:
+            if current + el <= duration:
+                current += el
+            else:
+                res = max(res, current)
+                rest_stations -= 1
+                if rest_stations == 0:
+                    return None
+                current = el
+
+        res = max(res, current)
+
+        return res
+
+    def rec(l, r):
+        nonlocal result
+        if l >= r:
+            return
+        m = (l + r) // 2
+        res = check(m)
+        if res is None:
+            rec(m + 1, r)
+        else:
+            result = min(result, res)
+            rec(l, m)
+
+    rec(start, end)
+
+    return result
+
+# O(log(sum(D)) * D) -- time
+# O(log(sum(D))) -- space

@@ -24,4 +24,42 @@
 
 
 def points_and_segments(requests):
-    pass
+    max_point = 1000000
+    tree = [0] * 4 * max_point
+
+    def search(v, tl, tr, l, r):
+        if l > r:
+            return 0
+        if l == tl and r == tr:
+            return tree[v]
+        tm = (tl + tr) // 2
+        rl = search(v * 2 + 1, tl, tm, l, min(r, tm))
+        rr = search(v * 2 + 2, tm + 1, tr, max(l, tm + 1), r)
+        return rl + rr
+
+    def add(v, tl, tr, x):
+        if tl == tr:
+            tree[v] += 1
+        else:
+            tm = (tl + tr) // 2
+            if x <= tm:
+                add(v * 2 + 1, tl, tm, x)
+            else:
+                add(v * 2 + 2, tm + 1, tr, x)
+            tree[v] += 1
+
+    tree_l, tree_r = 0, max_point - 1
+    result = []
+    for type, r in requests:
+        if type == "search":
+            l, r = r
+            res = search(0, tree_l, tree_r, l, r)
+            result.append(res)
+        else:
+            add(0, tree_l, tree_r, r)
+
+    return result
+
+# O(N + R * logN) -- time
+# O(N + logN + R) -- space
+# where N is a total number of different coordinates
